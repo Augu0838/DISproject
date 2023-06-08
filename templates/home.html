@@ -20,3 +20,16 @@
         </div>  
     {% endfor %}  
 {% endblock %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1style="color:#cf6b6d;direction:ltr;font-family:Georgia, Times, 'Times New Roman', serif;font-size:38px;font-weight:700;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;"></h1style><span class="tinyMce-placeholder">{% block title %} Er jeg vinterbader? {% endblock %}</span></h1>
+		{% for temp in temps %}
+        <div class='temp'>
+			<i><p>(Hej {{ user[1] }})</p></i>
+			<h3>Vandet er {{ user[3] }} grader ved {{ user[4] }}</h3>
+			<p>(I dag kan du {{ user[3] }} kalde dig vinterbader)</p>
+        </div>
+    {% endfor %}
+{% endblock %}

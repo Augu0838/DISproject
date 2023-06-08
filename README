@@ -1,0 +1,4 @@
+Execute
+
+$ export DB_USERNAME="auguste"
+$ export DB_PASSWORD="123"

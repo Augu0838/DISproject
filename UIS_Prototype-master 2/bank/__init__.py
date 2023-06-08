@@ -20,9 +20,9 @@ conn = psycopg2.connect(db)
 bcrypt = Bcrypt(app)
 
 
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
-login_manager.login_message_category = 'info'
+# login_manager = LoginManager(app)
+# login_manager.login_view = 'login'
+# login_manager.login_message_category = 'info'
 
 #202212
 # Check Configuration section for more details
@@ -30,10 +30,10 @@ login_manager.login_message_category = 'info'
 
 
 #202212
-roles = ["ingen","employee","customer"]
-print(roles)
-mysession = {"state" : "initializing","role" : "Not assingned", "id": 0 ,"age" : 202212}
-print(mysession)
+# roles = ["ingen","employee","customer"]
+# print(roles)
+# mysession = {"state" : "initializing","role" : "Not assingned", "id": 0 ,"age" : 202212}
+# print(mysession)
 
 # from bank.Login.routes import Login
 # from bank.Customer.routes import Customer

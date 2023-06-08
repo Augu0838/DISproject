@@ -34,4 +34,15 @@ def login():
     conn.close()
     return render_template('login.html', temps=temp)
 
+@app.route('/home')
+def home():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM Users;')
+    temp = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('home.html', temps=temp)
+
+
     

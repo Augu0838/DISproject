@@ -162,6 +162,7 @@
 		<div class="bee-row bee-row-1">
 			<div class="bee-row-content">
 				<div class="bee-col bee-col-1 bee-col-w12">
+                    {% block content %}
 					<div class="bee-block bee-block-1 bee-divider">
 						<div class="spacer" style="height:41px;"></div>
 					</div>
@@ -171,12 +172,15 @@
 					<div class="bee-block bee-block-3 bee-divider">
 						<div class="spacer" style="height:1px;"></div>
 					</div>
+                    {% for temp in temps %}
 					<div class="bee-block bee-block-4 bee-paragraph">
 						<p>[SVAR]</p>
 					</div>
+                    {% endfor %}  
 					<div class="bee-block bee-block-5 bee-divider">
 						<div class="spacer" style="height:900px;"></div>
 					</div>
+                    {% endblock %}
 				</div>
 			</div>
 		</div>
@@ -198,3 +202,26 @@
 </body>
 
 </html>
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="title">
+    <h1style="color:#cf6b6d;direction:ltr;font-family:Georgia, Times, 'Times New Roman', serif;font-size:38px;font-weight:700;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;"></h1style><span class="tinyMce-placeholder">{% block title %} Er jeg vinterbader? {% endblock %}</span></h1>
+    </div>
+    {% for temp in temps %}
+        <div class='temp'>
+            <div class="spacer1">
+                <div class="spacer" style="height:1px;"></div>
+            </div>
+            <div class="info">
+                <i><p>(Hej {{ temp[3] }})</p></i>
+                <h3>Vandet er {{ temp[3] }} grader ved {{ temp[4] }}</h3>
+                <p>(I dag kan du {{ temp[3] }} kalde dig vinterbader)</p>
+            </div>
+            <div class="spacer2">
+                <div class="spacer" style="height:900px;"></div>
+            </div>
+        </div>  
+    {% endfor %}  
+{% endblock %}

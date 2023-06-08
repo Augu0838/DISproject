@@ -2,3 +2,6 @@ Execute
 
 $ export DB_USERNAME="auguste"
 $ export DB_PASSWORD="123"
+
+Colors: #cfecf3 -> blue
+        #c65959 -> red

@@ -1,7 +1,13 @@
-Execute
+Execute by allowing access to flask database.
 
 $ export DB_USERNAME="auguste"
 $ export DB_PASSWORD="123"
 
-Colors: #cfecf3 -> blue
-        #c65959 -> red
+Get data:
+Copy the "data" folder into a folder accessible by postgress.
+Copy pathname to the folder the data-folder is now within, and insert into "copy" statements in the "init_db.py" file.
+
+
+Colors used:
+-> #cfecf3 -> blue
+-> #c65959 -> red

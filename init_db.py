@@ -15,6 +15,9 @@ conn = psycopg2.connect(
 # Open a cursor to perform database operations
 cur = conn.cursor()
 
+# Comment in if database does not exist
+##cur.execute('CREATE DATABASE flash_db;')
+
 # Execute a command: this creates a new table
 cur.execute('DROP TABLE IF EXISTS Stations;')
 cur.execute('CREATE TABLE IF NOT EXISTS Stations(stationId integer PRIMARY KEY,'

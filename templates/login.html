@@ -1,292 +1,46 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
+
+
+{% macro form_errors (errors=[]) %}
+    {% for error in errors %}
+        <span class="text--red">{{ error }}</span>
+    {% endfor %}
+{% endmacro %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %}
 
 {% block content %}
-    <h1>{% block title %} Temps {% endblock %}</h1>
-    {% for temp in temps %}
-        <div class='temp'>
-            <h3>#{{ temp[0] }} - {{ temp[1] }} BY {{ temp[2] }}</h3>
-            <i><p>({{ temp[3] }})</p></i>
-            <p class='station'>{{ temp[2] }}</p>
-        </div>
-    {% endfor %}
-{% endblock %} -->
+    <div class="login-center"></div>
+    <section class="form-wrapper">
+        <h1>Login</h1>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
 
-<!DOCTYPE html>
-<html>
+            <div class="form-group">
+                {{ form.user_name.label }}
+                {{ form.user_name }}
 
-<head>
-	<title></title>
-	<meta content="summary_large_image" name="twitter:card" />
-	<meta content="website" property="og:type" />
-	<meta content="" property="og:description" />
-	<meta content="https://zx2ws04wfi.preview-postedstuff.com/V2-bbjN-ZF8Z0-Q3kb-wPr4/" property="og:url" />
-	<meta content="" property="og:title" />
-	<meta content="" name="description" />
-	<meta charset="utf-8" />
-	<meta content="width=device-width" name="viewport" />
-	<style>
-		.bee-row,
-		.bee-row-content {
-			position: relative
-		}
+                {{ form_errors(form.user_name.errors) }}
+            </div>
 
-		.bee-form .bee-form-row .bee-field button {
-			font-size: inherit;
-			font-family: inherit
-		}
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password }}
 
-		.bee-row-1,
-		.bee-row-2 {
-			background-repeat: no-repeat
-		}
+                {{ form_errors(form.password.errors) }}
+            </div>
 
-		body {
-			background-color: #cfecf3;
-			color: #000;
-			font-family: Arial, Helvetica, sans-serif
-		}
-
-		a {
-			color: #c65959
-		}
-
-		* {
-			box-sizing: border-box
-		}
-
-		body,
-		h1 {
-			margin: 0
-		}
-
-		.bee-row-content {
-			max-width: 1280px;
-			margin: 0 auto;
-			display: flex
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 div.label:not(.inline),
-		.bee-row-1 .bee-col-1 .bee-block-4 label:not(.inline),
-		.bee-row-content .bee-col-w12 {
-			flex-basis: 100%
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 .bee-button-container {
-			text-align: center
-		}
-
-		.bee-icon .bee-icon-label-right a {
-			text-decoration: none
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 .bee-form-row:not(.bee-sidelabel) input:not([type=checkbox]):not([type=radio]) {
-			width: 100%
-		}
-
-		.bee-form .bee-form-row .bee-field {
-			padding: 3px;
-			display: flex;
-			flex: 1;
-			flex-wrap: wrap;
-			align-items: center
-		}
-
-		.bee-form .bee-form-row .bee-field input:not([type=checkbox]):not([type=radio]) {
-			flex-grow: 1;
-			font-family: inherit;
-			font-size: inherit
-		}
-
-		.bee-form .bee-form-row .bee-field .bee-button-container {
-			flex-grow: 1
-		}
-
-		.bee-form input[type=color] {
-			border: none;
-			height: 38px
-		}
-
-		.bee-form input[type=color]::-webkit-color-swatch-wrapper {
-			margin: 0;
-			padding: 2px
-		}
-
-		.bee-form input[type=color]::-webkit-color-swatch {
-			margin: 0;
-			padding: 0
-		}
-
-		.bee-icon {
-			display: inline-block;
-			vertical-align: middle
-		}
-
-		.bee-icon .bee-content {
-			display: flex;
-			align-items: center
-		}
-
-		@media (max-width:768px) {
-			.bee-form form {
-				width: 100% !important
-			}
-
-			.bee-row-content:not(.no_stack) {
-				display: block
-			}
-		}
-
-		.bee-row-1 .bee-row-content,
-		.bee-row-2 .bee-row-content {
-			background-repeat: no-repeat;
-			color: #000
-		}
-
-		.bee-row-1 .bee-col-1,
-		.bee-row-2 .bee-col-1 {
-			padding-bottom: 5px;
-			padding-top: 5px
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-2 {
-			padding: 15px;
-			text-align: center;
-			width: 100%
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 {
-			font-family: inherit;
-			font-size: 16px;
-			font-weight: 400;
-			padding: 40px;
-			text-align: center
-		}
-
-		.bee-row-2 .bee-col-1 .bee-block-1 {
-			color: #9d9d9d;
-			font-family: inherit;
-			font-size: 15px;
-			padding-bottom: 5px;
-			padding-top: 5px;
-			text-align: center
-		}
-
-		.bee-row-2 .bee-col-1 .bee-block-1 .bee-icon-image {
-			padding: 5px 6px 5px 5px
-		}
-
-		.bee-row-2 .bee-col-1 .bee-block-1 .bee-icon:not(.bee-icon-first) .bee-content {
-			margin-left: 0
-		}
-
-		.bee-row-2 .bee-col-1 .bee-block-1 .bee-icon::not(.bee-icon-last) .bee-content {
-			margin-right: 0
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 form {
-			display: inline-block;
-			width: 70%
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 div.label,
-		.bee-row-1 .bee-col-1 .bee-block-4 label {
-			color: #c65959;
-			letter-spacing: 1px;
-			line-height: 180%;
-			text-align: left;
-			display: block
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 ::-webkit-input-placeholder {
-			color: #c65959
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 :-moz-placeholder {
-			color: #c65959
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 ::-moz-placeholder {
-			color: #c65959
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 :-ms-input-placeholder {
-			color: #c65959
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 .bee-field>label:first-child,
-		.bee-row-1 .bee-col-1 .bee-block-4 div.label {
-			padding: 3px
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 input:not([type=checkbox]):not([type=radio]):not([type=image]) {
-			background-color: #fff;
-			border-radius: 4px;
-			color: #c65959;
-			padding: 5px;
-			min-height: 38.8px
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 input:not([type=checkbox]):not([type=radio]):focus {
-			outline-color: #c65959
-		}
-
-		.bee-row-1 .bee-col-1 .bee-block-4 button {
-			background-color: #c65959;
-			border-bottom: 0 solid transparent;
-			border-left: 0 solid transparent;
-			border-radius: 4px;
-			border-right: 0px solid transparent;
-			border-top: 0 solid transparent;
-			color: #cfecf3;
-			letter-spacing: 1px;
-			line-height: 200%;
-			padding: 5px 20px;
-			width: 100%
-		}
-	</style>
-</head>
-
-<body>
-	<div class="bee-page-container">
-		<div class="bee-row bee-row-1">
-			<div class="bee-row-content">
-				<div class="bee-col bee-col-1 bee-col-w12">
-					<div class="bee-block bee-block-1 bee-spacer">
-						<div class="spacer" style="height:125px;"></div>
-					</div>
-					<div class="bee-block bee-block-2 bee-heading">
-						<h1 style="color:#c65959;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:38px;font-weight:700;letter-spacing:1px;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;"><span class="tinyMce-placeholder">Er Jeg Vinterbader?</span> </h1>
-					</div>
-					<div class="bee-block bee-block-3 bee-spacer">
-						<div class="spacer" style="height:120px;"></div>
-					</div>
-					<div class="bee-block bee-block-4 bee-form">
-						<form accept-charset="UTF-8" action="ACTION_PLACEHOLDER" autocomplete="on" enctype="multipart/form-data" method="post" target="_self">
-							<div class="bee-form-row">
-								<div class="bee-field bee-field-r0c0m3i1"><label for="r0c0m3i1">Name</label><input id="r0c0m3i1" name="firstname" required="" type="text" /></div>
-							</div>
-							<div class="bee-form-row">
-								<div class="bee-field bee-field-r0c0m3i2"><label for="r0c0m3i2">Password</label><input id="r0c0m3i2" name="lastname" required="" type="text" /></div>
-							</div>
-							<div class="bee-form-row">
-								<div class="bee-field bee-field-r0c0m3i3"><label for="r0c0m3i3">Favorite Harbour</label><input id="r0c0m3i3" name="email" required="" type="text" /></div>
-							</div>
-							<div class="bee-form-row">
-								<div class="bee-field bee-field-r0c0m3i11">
-									<div class="bee-button-container"><button id="r0c0m3i11" name="submit" type="submit" value="SIGN IN">SIGN IN</button></div>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="bee-block bee-block-5 bee-spacer">
-						<div class="spacer" style="height:120px;"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-
-</html>
+            <div class="form-group">
+                {{ form.submit(class="btn btn--full") }}
+            </div>
+        </form>
+    </section>
+    </div>
+{% endblock %}
 
 

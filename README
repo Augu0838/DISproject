@@ -1,13 +1,17 @@
 Execute by allowing access to flask database.
 
-$ export DB_USERNAME="auguste"
-$ export DB_PASSWORD="123"
+$ export DB_USERNAME="database username"
+$ export DB_PASSWORD="database password"
 
 Get data:
 Copy the "data" folder into a folder accessible by postgress.
 Copy pathname to the folder the data-folder is now within, and insert into "copy" statements in the "init_db.py" file.
 
+You can now run the init_db.py file to insert data from the csv files into the database.
 
-Colors used:
--> #cfecf3 -> blue
--> #c65959 -> red
+Run the app using flask once the above steps are completed:
+$ flask run
+
+
+Try login in to the site using one or more of the users in the data file "users.csv".
+Are any of the useres "vinterbadere"?

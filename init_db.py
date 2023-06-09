@@ -25,7 +25,7 @@ cur.execute('DROP TABLE IF EXISTS Users;')
 cur.execute('CREATE TABLE IF NOT EXISTS Users(userId SERIAL PRIMARY KEY,'
 	'username varchar(60),'
 	'password varchar(120),'
-	'favoriteStation varchar(60));'
+	'favoriteStation integer);'
 )
 
 cur.execute('DROP TABLE IF EXISTS Measurements;')

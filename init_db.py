@@ -4,6 +4,8 @@ import psycopg2
 # current_directory  = os.getcwd()
 # path = os.path.join(current_directory, 'data')
 
+path = '/Applications/PostgreSQL 15/'
+
 conn = psycopg2.connect(
         host="localhost",
         database="flask_db",
@@ -35,14 +37,14 @@ cur.execute('CREATE TABLE IF NOT EXISTS Measurements(measurementId SERIAL PRIMAR
 
 
 cur.execute('COPY Users(username, password, favoriteStation)' 
-            'FROM \'/Applications/PostgreSQL 15/data/users.csv\' CSV HEADER;'
+            f'FROM \'{path}/data/users.csv\' CSV HEADER;'
             )
 
 cur.execute('COPY Stations(stationId, stationName)' 
-            'FROM \'/Applications/PostgreSQL 15/data/stations.csv\' CSV HEADER;')
+            f'FROM \'{path}/data/stations.csv\' CSV HEADER;')
 
 cur.execute('COPY Measurements(measurementDate, stationId, temperature)'
-            'FROM \'/Applications/PostgreSQL 15/data/tw.csv\' CSV HEADER;')
+            f'FROM \'{path}/data/tw.csv\' CSV HEADER;')
 
 conn.commit()
 
